@@ -1,0 +1,113 @@
+------------------------------assignment7-------------------------------------------
+
+import nltk
+nltk.download('punkt')
+word_data = "It originated from the idea that there are readers who prefer learning new skills from the comforts of their drawing rooms"
+nltk_tokens = nltk.word_tokenize(word_data)
+print (nltk_tokens)
+
+# Stopwords removal
+import nltk
+nltk.download('stopwords')
+
+from nltk.corpus import stopwords
+en_stops = set(stopwords.words('english'))
+all_words = ['There', 'is', 'a', 'tree','near','the','river']
+for word in all_words: 
+    if word not in en_stops:
+        print(word)
+
+#Tagging words
+import nltk
+nltk.download('averaged_perceptron_tagger')
+text = nltk.word_tokenize("A Python is a serpent which eats eggs from the nest")
+tagged_text=nltk.pos_tag(text)
+print(tagged_text)
+
+# Steaming
+import nltk
+from nltk.stem.porter import PorterStemmer
+from nltk.stem.lancaster import LancasterStemmer
+from nltk.stem import SnowballStemmer 
+porter_stemmer = PorterStemmer()
+lanca_stemmer = LancasterStemmer()
+sb_stemmer = SnowballStemmer("english",)
+word_data = "Aging head of famous crime family decides to transfer his position to one of his subalterns" 
+# First Word tokenization
+nltk_tokens = nltk.word_tokenize(word_data)
+#Next find the roots of the word
+print ('***PorterStemmer****\n')
+for w_port in nltk_tokens:
+   print (("Actual: %s  || Stem: %s") % (w_port,porter_stemmer.stem(w_port)))
+print ('\n***LancasterStemmer****\n' )   
+for w_lanca in nltk_tokens:
+      print (("Actual: %s  || Stem: %s" ) % (w_lanca,lanca_stemmer.stem(w_lanca)))
+print ('\n***SnowballStemmer****\n')
+for w_snow in nltk_tokens:
+      print (("Actual: %s  || Stem: %s")  % (w_snow,sb_stemmer.stem(w_snow)))
+
+--------------------------------------assignment 8 ------------------------------------------------------------
+
+
+import pandas as pd
+
+df = pd.read_csv('https://d17h27t6h515a5.cloudfront.net/topher/2016/September/57e9a84c_titanic-data/titanic-data.csv')
+
+df.head()
+
+df.describe()
+
+df.info()
+
+import seaborn as sns
+
+sns.countplot(x='Sex', data=df)
+
+sns.barplot(x='Sex', y='Survived', data=df)
+
+sns.barplot(x='Pclass', y='Survived', data=df)
+
+sns.pairplot(df, hue='Survived')
+
+sns.catplot(x='Sex', col = 'Embarked', data=df , kind = 'count')
+
+sns.heatmap(df.corr(),annot=True, linewidths=0.2)
+
+sns.histplot(x='Age', y='Fare', data=df,)
+
+---------------------------------------assignment9 --------------------------------------------------------
+
+
+import pandas as pd
+import seaborn as sns
+
+titanic = pd.read_csv('https://raw.githubusercontent.com/dphi-official/Datasets/master/titanic_data.csv')
+titanic
+
+# Plot the box plot
+sns.boxplot(x='Sex', y='Age', hue='Survived', data=titanic)
+
+---------------------------------------assignment 10-------------------------------------------------------
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+data = pd.read_csv('https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/0e7a9b0a5d22642a06d3d5b9bcbad9890c8ee534/iris.csv')
+data
+
+sns.histplot(x = data['sepal_length'], kde=True)
+
+sns.histplot(x = data['sepal_length'], kde=True)
+
+sns.histplot(x = data['petal_length'], kde=True)
+
+sns.histplot(x = data['petal_width'], kde=True)
+
+sns.boxplot(x='sepal_length',y='species',data=data)
+
+
+
+
+  
